@@ -5,14 +5,8 @@ pipeline {
     NODE_VERSION = '14.18.1'
   }
   stages {
-     stage('Print hello') {
-      steps {
-        echo 'Hello world!'
-      }
-    }
     stage('Install dependencies') {
       steps {
-        echo 'node -v'
         bat 'npm install'
       }
     }
