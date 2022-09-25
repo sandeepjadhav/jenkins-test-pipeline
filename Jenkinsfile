@@ -11,25 +11,20 @@ pipeline {
       }
     }
     
-      stage ('Promotion') {
+      
+     stage('Artifactory configuration') {
             steps {
-                rtPromote (
-                    //Mandatory parameter
-                    serverId: "https://sandeepjadhav.jfrog.io",
-                    targetRepo: "api-build",
-
-                    //Optional parameters
-                    buildName: 'MK',
-                    buildNumber: '48',
-                    comment: 'this is the promotion comment',
-                    status: 'Released',
-                    includeDependencies: true,
-                    failFast: true,
-                    copy: true
+                rtServer(
+                        id: "node_app_test",
+                           url: 'https://sandeepjadhav.jfrog.io/artifactory',
+                      // If you're using username and password:
+                      username: 'sandeep_test',
+                      password: 'Password@123',
                 )
             }
         }
     
+
   }
   
   
