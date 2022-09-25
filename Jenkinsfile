@@ -52,9 +52,11 @@ pipeline {
                     serverId: "node_app_test" ,
                   spec: """{
                                 "files": [
-                                     "pattern": "libs-snapshot-local/*(Pipeline).zip",
+                                     {
+      "pattern": "libs-snapshot-local/*(Pipeline).zip",
       "target": "Bazinga/{1}/",
       "props": "p1=v1;p2=v2"
+    }
                                 ]
                             }"""
                 
