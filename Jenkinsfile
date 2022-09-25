@@ -16,7 +16,7 @@ pipeline {
             steps {
                 rtServer(
                         id: "node_app_test",
-                           url: 'https://sandeepjadhav.jfrog.io/artifactory',
+                           url: 'https://sandeepjadhav.jfrog.io/artifactory/node_app_test',
                       // If you're using username and password:
                       username: 'sandeep_test',
                       password: 'Password@123',
@@ -62,7 +62,7 @@ pipeline {
                  rtPromote (
                     //Mandatory parameter
                     serverId: 'node_app_test',
-                    targetRepo: 'https://sandeepjadhav.jfrog.io/artifactory',
+                    targetRepo: 'https://sandeepjadhav.jfrog.io/artifactory/node_app_test',
 
                     //Optional parameters
                     buildName: "${env.BUILD_NUMBER}",
