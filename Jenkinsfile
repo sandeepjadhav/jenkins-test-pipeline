@@ -34,8 +34,8 @@ pipeline {
                     targetRepo: 'https://sandeepjadhav.jfrog.io/artifactory',
 
                     //Optional parameters
-                    buildName: '${env.BUILD_NUMBER}',
-                    buildNumber: '${env.BUILD_NUMBER}',
+                    buildName: "${env.BUILD_NUMBER}",
+                    buildNumber: "${env.BUILD_NUMBER}",
                     comment: 'this is the promotion comment',
                     status: 'Released',
                     includeDependencies: true,
