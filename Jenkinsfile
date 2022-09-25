@@ -18,7 +18,7 @@ pipeline {
                         id: "node_app_test",
                            url: 'https://sandeepjadhav.jfrog.io/artifactory/node_app_test',
                       // If you're using username and password:
-                      username: 'sandeep_test',
+                      username: 'admin',
                       password: 'Password@123',
                 )
             }
