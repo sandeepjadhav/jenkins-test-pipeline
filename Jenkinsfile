@@ -25,6 +25,39 @@ pipeline {
         }
     
     
+    stage ('Upload') {
+            steps {
+                rtUpload (
+                    buildName: "${env.BUILD_NUMBER}",
+                    buildNumber: "${env.BUILD_NUMBER}",
+                    // Obtain an Artifactory server instance, defined in Jenkins --> Manage Jenkins --> Configure System:
+                    serverId: "node_app_test",
+                    specPath: 'jenkins-examples/pipeline-examples/resources/props-upload.json'
+                )
+            }
+        }
+
+        stage ('Download') {
+            steps {
+                rtDownload (
+                    buildName: "${env.BUILD_NUMBER}",
+                    buildNumber: "${env.BUILD_NUMBER}",
+                    serverId: "node_app_test",
+                    specPath: 'jenkins-examples/pipeline-examples/resources/props-download.json'
+                )
+            }
+        }
+
+        stage ('Publish build info') {
+            steps {
+                rtPublishBuildInfo (
+                    buildName: "${env.BUILD_NUMBER}",
+                    buildNumber: "${env.BUILD_NUMBER}",
+                    serverId: "node_app_test"
+                )
+            }
+        }
+    
     stage('Add build trigger') {
             steps {
                 
