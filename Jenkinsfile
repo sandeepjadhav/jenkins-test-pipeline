@@ -70,7 +70,7 @@ pipeline {
                  rtPromote (
                     //Mandatory parameter
                     serverId: 'node_app_test',
-                    targetRepo: 'test_1_repo',
+                    targetRepo: 'test_1_repo/',
 
                     //Optional parameters
                     buildName: "${env.BUILD_NUMBER}",
