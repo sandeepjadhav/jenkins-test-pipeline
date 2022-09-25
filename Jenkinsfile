@@ -32,7 +32,7 @@ pipeline {
                     buildNumber: "${env.BUILD_NUMBER}",
                     // Obtain an Artifactory server instance, defined in Jenkins --> Manage Jenkins --> Configure System:
                     serverId: "node_app_test",
-                    specPath: 'jenkins-examples/pipeline-examples/resources/props-upload.json'
+                    specPath: 'https://github.com/jfrog/project-examples/blob/master/jenkins-examples/pipeline-examples/resources/props-upload.json'
                 )
             }
         }
@@ -43,7 +43,7 @@ pipeline {
                     buildName: "${env.BUILD_NUMBER}",
                     buildNumber: "${env.BUILD_NUMBER}",
                     serverId: "node_app_test",
-                    specPath: 'jenkins-examples/pipeline-examples/resources/props-download.json'
+                    specPath: 'https://github.com/jfrog/project-examples/blob/master/jenkins-examples/pipeline-examples/resources/props-download.json'
                 )
             }
         }
