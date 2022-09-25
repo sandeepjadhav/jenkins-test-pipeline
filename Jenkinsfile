@@ -35,8 +35,8 @@ pipeline {
                   spec: """{
                                 "files": [
                                     {
-                                    "pattern": "${env.BUILD_NUMBER}-*.zip",
-                                    "target": "api-v/"
+                                    "pattern": "*",
+                                    "target": "test_1_repo"
                                     }
                                 ]
                             }"""
