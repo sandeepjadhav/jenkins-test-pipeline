@@ -24,6 +24,18 @@ pipeline {
             }
         }
     
+    
+    stage('Add build trigger') {
+            steps {
+                rtBuildTrigger(
+                        serverId: "node_app_test",
+                        spec: "*/10 * * * *",
+                       buildName: `test_${currentBuild.number}`,
+                      buildNumber: ${currentBuild.number},
+                )
+            }
+        }
+    
 
   }
   
