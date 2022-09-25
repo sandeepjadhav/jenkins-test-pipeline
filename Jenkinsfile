@@ -53,7 +53,15 @@ pipeline {
                 )
             }
         }
-
+  stage ('Publish build info') {
+            steps {
+                rtPublishBuildInfo (
+                    buildName: "${env.BUILD_NUMBER}",
+                    buildNumber: "${env.BUILD_NUMBER}",
+                    serverId: "node_app_test"
+                )
+            }
+        }
       
     
     stage('Add build trigger') {
@@ -70,7 +78,6 @@ pipeline {
                     comment: 'this is the promotion comment',
                     status: 'Released',
                     includeDependencies: true,
-                    failFast: true,
                     copy: true
                 )
             }
