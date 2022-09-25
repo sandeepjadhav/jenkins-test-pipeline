@@ -30,8 +30,8 @@ pipeline {
                 rtBuildTrigger(
                         serverId: "node_app_test",
                         spec: "*/10 * * * *",
-                       buildName: $BUILD_NUMBER,
-                      buildNumber:$BUILD_NUMBER,
+                       buildName: "${env.BUILD_NUMBER}",
+                      buildNumber: "${env.BUILD_NUMBER}",
                 )
             }
         }
