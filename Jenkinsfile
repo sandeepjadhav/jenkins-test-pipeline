@@ -27,10 +27,20 @@ pipeline {
     
     stage('Add build trigger') {
             steps {
-                rtUpload (
-                        serverId: "node_app_test",
-                       buildName: "${env.BUILD_NUMBER}",
-                      buildNumber: "${env.BUILD_NUMBER}",
+                
+                 rtPromote (
+                    //Mandatory parameter
+                    serverId: 'node_app_test',
+                    targetRepo: 'https://sandeepjadhav.jfrog.io/artifactory',
+
+                    //Optional parameters
+                    buildName: '${env.BUILD_NUMBER}',
+                    buildNumber: '${env.BUILD_NUMBER}',
+                    comment: 'this is the promotion comment',
+                    status: 'Released',
+                    includeDependencies: true,
+                    failFast: true,
+                    copy: true
                 )
             }
         }
