@@ -49,7 +49,15 @@ pipeline {
                 rtDownload (
                     buildName: "${env.BUILD_NUMBER}",
                     buildNumber: "${env.BUILD_NUMBER}",
-                    serverId: "node_app_test" 
+                    serverId: "node_app_test" ,
+                  spec: """{
+                                "files": [
+                                     "pattern": "libs-snapshot-local/*(Pipeline).zip",
+      "target": "Bazinga/{1}/",
+      "props": "p1=v1;p2=v2"
+                                ]
+                            }"""
+                
                 )
             }
         }
