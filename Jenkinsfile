@@ -31,7 +31,7 @@ pipeline {
                     buildName: "${env.BUILD_NUMBER}",
                     buildNumber: "${env.BUILD_NUMBER}",
                     // Obtain an Artifactory server instance, defined in Jenkins --> Manage Jenkins --> Configure System:
-                    serverId: "node_app_test"
+                    serverId: "node_app_test",
                   spec: """{
                                 "files": [
                                     {
