@@ -70,7 +70,6 @@ pipeline {
                  rtPromote (
                     //Mandatory parameter
                     serverId: 'node_app_test',
-                    targetRepo: 'https://sandeepjadhav.jfrog.io/ui/native/test_1_repo/',
 
                     //Optional parameters
                     buildName: "${env.BUILD_NUMBER}",
