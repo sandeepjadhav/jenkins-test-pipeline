@@ -27,9 +27,8 @@ pipeline {
     
     stage('Add build trigger') {
             steps {
-                rtBuildTrigger(
+                rtUpload (
                         serverId: "node_app_test",
-                        spec: "*/10 * * * *",
                        buildName: "${env.BUILD_NUMBER}",
                       buildNumber: "${env.BUILD_NUMBER}",
                 )
