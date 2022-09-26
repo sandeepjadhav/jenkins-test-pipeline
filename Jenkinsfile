@@ -5,6 +5,7 @@ pipeline {
   environment {
     NODE_VERSION = '14.18.1'
     SERVER_ID = 'nodeAppID'
+    ARTIFACTORY = 'jenkin_node_test'
   }
   stages {
  
@@ -31,7 +32,7 @@ pipeline {
           "{
           "files": [{
             "pattern": "*.zip",
-            "target": "nodejenkinapp/uploaded/"
+              "target": "${ARTIFACTORY}/"
           }]
         }
         ""
