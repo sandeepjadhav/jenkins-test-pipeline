@@ -4,9 +4,9 @@ pipeline {
   environment {
     NODE_VERSION = '14.18.1'
     SERVER_ID = 'nodeAppID'
-    ARTIFCTORY_URL: 'https://sandeepjadhav.jfrog.io/artifactory'
-    ARTIFCTORY_USER_NAME: 'admin'
-    ARTIFCTORY_PASSWORD: 'Password@123'
+    ARTIFCTORY_URL= 'https://sandeepjadhav.jfrog.io/artifactory'
+    ARTIFCTORY_USER_NAME= 'admin'
+    ARTIFCTORY_PASSWORD= 'Password@123'
   }
   stages {
     stage('Install dependencies') {
