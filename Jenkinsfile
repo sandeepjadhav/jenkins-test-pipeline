@@ -36,8 +36,8 @@ pipeline {
                   spec: """{
                                 "files": [
                                     {
-                                    "pattern": "*",
-                                    "target": "nodejenkinapp"
+                                    "pattern": "/*",
+                                    "target": "nodejenkinapp/uploaded/"
                                     }
                                 ]
                             }"""
