@@ -4,6 +4,9 @@ pipeline {
   environment {
     NODE_VERSION = '14.18.1'
     SERVER_ID = 'nodeAppID'
+    ARTIFCTORY_URL: 'https://sandeepjadhav.jfrog.io/artifactory'
+    ARTIFCTORY_USER_NAME: 'admin'
+    ARTIFCTORY_PASSWORD: 'Password@123'
   }
   stages {
     stage('Install dependencies') {
@@ -16,11 +19,11 @@ pipeline {
      stage('Artifactory configuration') {
             steps {
                 rtServer(
-                        id: SERVER_ID,
-                           url: 'https://sandeepjadhav.jfrog.io/artifactory',
+                       id: SERVER_ID,
+                       url: ARTIFCTORY_URL,
                       // If you're using username and password:
-                      username: 'admin',
-                      password: 'Password@123',
+                      username: ARTIFCTORY_USER_NAME,
+                      password: ARTIFCTORY_PASSWORD,
                 )
             }
         }
