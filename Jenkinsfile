@@ -1,4 +1,5 @@
 #!/usr/bin/env
+
 pipeline {
   agent any
   environment {
@@ -6,56 +7,47 @@ pipeline {
     SERVER_ID = 'nodeAppID'
   }
   stages {
-    stage('Install dependencies') {
+ 
+    stage('Artifactory configuration') {
       steps {
-        bat 'npm install'
+        rtServer(
+          id: SERVER_ID,
+          url: 'https://sandeepjadhav.jfrog.io/artifactory',
+          // If you're using username and password:
+          username: 'admin',
+          password: 'Password@123',
+        )
       }
     }
-    
-      
-     stage('Artifactory configuration') {
-            steps {
-                rtServer(
-                        id: SERVER_ID,
-                           url: 'https://sandeepjadhav.jfrog.io/artifactory',
-                      // If you're using username and password:
-                      username: 'admin',
-                      password: 'Password@123',
-                )
-            }
-        }
-    
-    
-    stage ('Upload') {
-            steps {
-                rtUpload (
-                    buildName: "${env.BUILD_NUMBER}",
-                    buildNumber: "${env.BUILD_NUMBER}",
-                    // Obtain an Artifactory server instance, defined in Jenkins --> Manage Jenkins --> Configure System:
-                    serverId: SERVER_ID,
-                  spec: """{
-                                "files": [
-                                    {
-                                    "pattern": "*.zip",
-                                    "target": "nodejenkinapp/uploaded/"
-                                    }
-                                ]
-                            }"""
-                )
-            }
-        }
-  
-    
 
-  }
-  
-  
-  post {
-    failure {
-      echo 'Processing failed'
+    stage('Upload') {
+      steps {
+        rtUpload(
+          buildName: "${env.BUILD_NUMBER}",
+          buildNumber: "${env.BUILD_NUMBER}",
+          // Obtain an Artifactory server instance, defined in Jenkins --> Manage Jenkins --> Configure System:
+          serverId: SERVER_ID,
+          spec: ""
+          "{
+          "files": [{
+            "pattern": "*.zip",
+            "target": "nodejenkinapp/uploaded/"
+          }]
+        }
+        ""
+        "
+      )
     }
-    success {
-      echo 'Processing succeeded'
-    }
   }
+
+}
+
+post {
+  failure {
+    echo 'Processing failed'
+  }
+  success {
+    echo 'Processing succeeded'
+  }
+}
 }
