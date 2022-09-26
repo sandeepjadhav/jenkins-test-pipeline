@@ -36,7 +36,7 @@ pipeline {
                   spec: """{
                                 "files": [
                                     {
-                                    "pattern": "P_new/*",
+                                    "pattern": "*.zip",
                                     "target": "nodejenkinapp/uploaded/"
                                     }
                                 ]
