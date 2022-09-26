@@ -3,6 +3,7 @@ pipeline {
   agent any
   environment {
     NODE_VERSION = '14.18.1'
+    SERVER_ID = 'nodeAppID'
   }
   stages {
     stage('Install dependencies') {
@@ -15,7 +16,7 @@ pipeline {
      stage('Artifactory configuration') {
             steps {
                 rtServer(
-                        id: "node_app_test",
+                        id: SERVER_ID,
                            url: 'https://sandeepjadhav.jfrog.io/artifactory',
                       // If you're using username and password:
                       username: 'admin',
@@ -31,35 +32,15 @@ pipeline {
                     buildName: "${env.BUILD_NUMBER}",
                     buildNumber: "${env.BUILD_NUMBER}",
                     // Obtain an Artifactory server instance, defined in Jenkins --> Manage Jenkins --> Configure System:
-                    serverId: "node_app_test",
+                    serverId: SERVER_ID,
                   spec: """{
                                 "files": [
                                     {
                                     "pattern": "*",
-                                    "target": "test_1_repo"
+                                    "target": "nodejenkinapp"
                                     }
                                 ]
                             }"""
-                )
-            }
-        }
-
-        stage ('Download') {
-            steps {
-                rtDownload (
-                    buildName: "${env.BUILD_NUMBER}",
-                    buildNumber: "${env.BUILD_NUMBER}",
-                    serverId: "node_app_test" ,
-                  spec: """{
-                                "files": [
-                                     {
-      "pattern": "libs-snapshot-local/*(Pipeline).zip",
-      "target": "Bazinga/{1}/",
-      "props": "p1=v1;p2=v2"
-    }
-                                ]
-                            }"""
-                
                 )
             }
         }
@@ -68,7 +49,7 @@ pipeline {
                 rtPublishBuildInfo (
                     buildName: "${env.BUILD_NUMBER}",
                     buildNumber: "${env.BUILD_NUMBER}",
-                    serverId: "node_app_test"
+                    serverId: SERVER_ID
                 )
             }
         }
@@ -79,8 +60,8 @@ pipeline {
                 
                  rtPromote (
                     //Mandatory parameter
-                    serverId: 'node_app_test',
-                     targetRepo: 'test_1_repo',
+                    serverId: SERVER_ID,
+                     targetRepo: 'nodejenkinapp',
 
                     //Optional parameters
                     buildName: "${env.BUILD_NUMBER}",
