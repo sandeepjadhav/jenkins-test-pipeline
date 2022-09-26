@@ -21,7 +21,7 @@ pipeline {
                 rtServer(
                        id: SERVER_ID,
                        url: ARTIFCTORY_URL,
-                      // If you're using username and password:
+                      // If using username and password:
                       username: ARTIFCTORY_USER_NAME,
                       password: ARTIFCTORY_PASSWORD,
                 )
@@ -34,7 +34,6 @@ pipeline {
                 rtUpload (
                     buildName: "${env.BUILD_NUMBER}",
                     buildNumber: "${env.BUILD_NUMBER}",
-                    // Obtain an Artifactory server instance, defined in Jenkins --> Manage Jenkins --> Configure System:
                     serverId: SERVER_ID,
                   spec: """{
                                 "files": [
