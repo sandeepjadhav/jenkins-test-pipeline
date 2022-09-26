@@ -44,35 +44,7 @@ pipeline {
                 )
             }
         }
-  stage ('Publish build info') {
-            steps {
-                rtPublishBuildInfo (
-                    buildName: "${env.BUILD_NUMBER}",
-                    buildNumber: "${env.BUILD_NUMBER}",
-                    serverId: SERVER_ID
-                )
-            }
-        }
-      
-    
-    stage('Add build trigger') {
-            steps {
-                
-                 rtPromote (
-                    //Mandatory parameter
-                    serverId: SERVER_ID,
-                     targetRepo: 'nodejenkinapp',
-
-                    //Optional parameters
-                    buildName: "${env.BUILD_NUMBER}",
-                    buildNumber: "${env.BUILD_NUMBER}",
-                    comment: 'this is the promotion comment',
-                    status: 'Released',
-                    includeDependencies: true,
-                    copy: true
-                )
-            }
-        }
+  
     
 
   }
